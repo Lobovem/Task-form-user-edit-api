@@ -12,14 +12,7 @@ function App() {
 
   return (
     <>
-      <Form
-        users={users}
-        setUsers={setUsers}
-        userEdit={userEdit}
-        setUserEdit={setUserEdit}
-        setUserBackup={setUserBackup}
-        userBackup={userBackup}
-      />
+      <Form users={users} setUsers={setUsers} userEdit={userEdit} setUserEdit={setUserEdit} userBackup={userBackup} />
       <Table
         users={users}
         setUserEdit={setUserEdit}

@@ -1,6 +1,6 @@
 import './Form.scss'
 
-export function Form({ users, setUsers, userEdit, setUserEdit, setUserBackup, userBackup }) {
+export function Form({ users, setUsers, userEdit, setUserEdit, userBackup }) {
   const handleSubmit = () => {
 
     const usersChanged = users.map((user) => {
@@ -48,7 +48,6 @@ export function Form({ users, setUsers, userEdit, setUserEdit, setUserBackup, us
           value={userEdit.email}
           onChange={handleChange}
         />
-        {/* <input type="hidden" name="id" value={userEdit.id} onChange={handleChange}/> */}
 
         <div className="form__button-wrap">
           <button  className="form__button" type="submit">
