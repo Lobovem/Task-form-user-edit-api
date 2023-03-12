@@ -6,6 +6,12 @@
   gap: 15px;
   margin-bottom: 50px;
 
+  &__input-gender {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &__input {
     height: 30px;
     border-radius: 10px;
