@@ -4,10 +4,17 @@ import { fetchUsers, saveUser } from '../../api';
 
 export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLoading, saveUser, fetchUsers, checked, setChecked}) {
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (checked) {
+      userEdit.age = Math.floor((new Date() - new Date(userEdit.birthDate)) / (365 * 24 * 60 * 60 * 1000))
+  }
+  
+
     setLoading(true);
 
-    ubdateUserAge()
+    // ubdateUserAge()
     saveUser(userEdit)
     .then(fetchUsers)
     .then(setUsers)
@@ -31,30 +38,30 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value });
   };
 
-  const ubdateUserAge = function () {
+  // const ubdateUserAge = function () {
     
-    if (checked===true) {
-      setUserEdit(userEdit)
-    //   let dateNow = new Date().getFullYear();
-    //  let res = users.forEach((user) => {
-    //     let year = user.birthDate.slice(0, 4);
-    //     if (user.age) {
-    //       user.age = dateNow - year;
-    //     }
-    //   });
+  //   // if (checked===true) {
+  //     // setUserEdit(userEdit)
+  //   //   let dateNow = new Date().getFullYear();
+  //   //  let res = users.forEach((user) => {
+  //   //     let year = user.birthDate.slice(0, 4);
+  //   //     if (user.age) {
+  //   //       user.age = dateNow - year;
+  //   //     }
+  //   //   });
 
-    //   return res
-    // }
-    // let res = (users.age = Math.floor(
-    //   (new Date() - new Date(users.birthDate)) / (365 * 24 * 60 * 60 * 1000)
-    // ));
+  //   //   return res
+  //   // }
+  //   // let res = (users.age = Math.floor(
+  //   //   (new Date() - new Date(users.birthDate)) / (365 * 24 * 60 * 60 * 1000)
+  //   // ));
 
-    return users.forEach(
-      (elem) => (elem.age = Math.floor((new Date() - new Date(elem.birthDate)) / (365 * 24 * 60 * 60 * 1000)))
-    );
+  //   return users.forEach(
+  //     (elem) => (elem.age = Math.floor((new Date() - new Date(elem.birthDate)) / (365 * 24 * 60 * 60 * 1000)))
+  //   );
 
-    }
-  };
+  //   // }
+  // };
 
   const handleChangeBox = () => {
 		setChecked(!checked); // инвертируем стейт checkbox for ubdate user age
