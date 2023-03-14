@@ -7,6 +7,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
   const handleSubmit = () => {
     setLoading(true);
 
+    ubdateUserAge()
     saveUser(userEdit)
     .then(fetchUsers)
     .then(setUsers)
@@ -14,6 +15,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
       setUserEdit(null)
       setLoading(false)
     });
+
   };
 
   //   const usersChanged = users.map((user) => {
@@ -27,24 +29,28 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
 
   const handleChange = (e) => {
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value });
-//     const {name, value, type, checked} = e.target
-// if(type==='checkbox') {
-//   setUserEdit({...userEdit, [name]: checked})
-//   setChecked(checked)
-  
-// } else {
-//   setUserEdit({ ...userEdit, [name]: value })
-// }
   };
 
-  // const ubdateUserAge = () => {
-  //   setUserEdit(users.forEach(elem => elem.age=Math.floor((new Date() - new Date (elem.birthDate))/(365*24*60*60*1000))))
-  // }
+  const ubdateUserAge = function () {
 
-  // console.log(ubdateUserAge);
+    if (checked===true) {
+      let dateNow = new Date().getFullYear();
+    
+     let res = users.forEach((user) => {
+        let year = user.birthDate.slice(0, 4);
+        if (user.age) {
+          user.age = dateNow - year;
+        }
+      });
+
+      console.log(res);
+    return res
+
+    }
+  };
 
   const handleChangeBox = () => {
-		setChecked(!checked); // инвертируем стейт
+		setChecked(!checked); // инвертируем стейт checkbox for ubdate user age
 	}
 
   return (
