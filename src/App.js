@@ -8,7 +8,7 @@ function App() {
   const [userEdit, setUserEdit] = useState(null);
   const [userBackup, setUserBackup] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [checked, setChecked] = useState(false);
+  const [updateUserAge, setUpdateUserAge] = useState(false);
 
   useEffect(() => {
     fetchUsers()
@@ -31,8 +31,8 @@ function App() {
         setLoading={setLoading}
         saveUser={saveUser}
         fetchUsers={fetchUsers}
-        checked={checked}
-        setChecked={setChecked}
+        updateUserAge={updateUserAge}
+        setUpdateUserAge={setUpdateUserAge}
       />
       <Table
         users={users}
