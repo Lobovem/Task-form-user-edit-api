@@ -8,7 +8,6 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
     if (updateUserAge) {
       userEdit.age = Math.floor((new Date() - new Date(userEdit.birthDate)) / (365 * 24 * 60 * 60 * 1000))
   }
-  
 
     setLoading(true);
 
