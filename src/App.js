@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 // import { data } from './users-data';
 import { Form } from './components/Form/Form';
 import { Table } from './components/Table/Table';
-import { fetchProducts, saveProduct } from './api';
+import { fetchUsers, saveUser } from './api';
 
 function App() {
   const [users, setUsers] = useState([]);
@@ -13,7 +13,7 @@ function App() {
   const [checked, setChecked] = useState(true);
 
   useEffect(() => {
-    fetchProducts()
+    fetchUsers()
       .then(setUsers)
       .then(() => setLoading(false));
   }, []); //[] скобки нужны, чтобы тело useEffect было запущено только один раз
@@ -31,8 +31,8 @@ function App() {
         setUserEdit={setUserEdit}
         userBackup={userBackup}
         setLoading={setLoading}
-        saveProduct={saveProduct}
-        fetchProducts={fetchProducts}
+        saveUser={saveUser}
+        fetchUsers={fetchUsers}
         checked={checked}
         setChecked={setChecked}
       />

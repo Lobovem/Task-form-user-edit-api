@@ -1,14 +1,14 @@
 import './Form.scss'
-import { fetchProducts, saveProduct } from '../../api';
+import { fetchUsers, saveUser } from '../../api';
 
 
-export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLoading, saveProduct, fetchProducts, checked, setChecked}) {
+export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLoading, saveUser, fetchUsers, checked, setChecked}) {
 
   const handleSubmit = () => {
     setLoading(true);
 
-    saveProduct(userEdit)
-    .then(fetchProducts)
+    saveUser(userEdit)
+    .then(fetchUsers)
     .then(setUsers)
     .then(() => {
       setUserEdit(null)
@@ -27,13 +27,23 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
 
   const handleChange = (e) => {
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value });
+//     const {name, value, type, checked} = e.target
+// if(type==='checkbox') {
+//   setUserEdit({...userEdit, [name]: checked})
+//   setChecked(checked)
+  
+// } else {
+//   setUserEdit({ ...userEdit, [name]: value })
+// }
   };
 
-  const ubdateUserAge = () => {
-    setUserEdit(users.forEach(elem => elem.age=Math.floor((new Date() - new Date (elem.birthDate))/(365*24*60*60*1000))))
-  }
+  // const ubdateUserAge = () => {
+  //   setUserEdit(users.forEach(elem => elem.age=Math.floor((new Date() - new Date (elem.birthDate))/(365*24*60*60*1000))))
+  // }
 
-  const handleChangeBox = () =>{
+  // console.log(ubdateUserAge);
+
+  const handleChangeBox = () => {
 		setChecked(!checked); // инвертируем стейт
 	}
 

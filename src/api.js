@@ -9,14 +9,14 @@ const jsonRequest = (url, options = {}) => {
   }).then((response) => response.json());
 };
 
-export const fetchProducts = () => {
+export const fetchUsers = () => {
   const options = { method: 'GET' };
   const req = jsonRequest('/users', options);
 
   return req;
 };
 
-export const saveProduct = (user) => {
+export const saveUser = (user) => {
   const options = {
     body: JSON.stringify(user),
     method: 'PUT',
@@ -27,14 +27,14 @@ export const saveProduct = (user) => {
   return req;
 };
 
-export const deleteProducts = (user) => {
+export const deleteUsers = (user) => {
   const options = { method: 'DELETE' };
   const req = jsonRequest(`/users/${user.id}`, options);
 
   return req;
 };
 
-export const createProduct = (user) => {
+export const createUsers = (user) => {
   const options = {
     body: JSON.stringify(user),
     method: 'POST',
