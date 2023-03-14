@@ -1,6 +1,4 @@
 import './Table.scss'
-import { fetchProducts, saveProduct } from '../../api';
-
 
 export function Table({ setUserEdit, users, userBackup,setUserBackup }) {
   return (

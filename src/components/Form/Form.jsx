@@ -32,19 +32,26 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
   };
 
   const ubdateUserAge = function () {
-
-    if (checked===true) {
-      let dateNow = new Date().getFullYear();
     
-     let res = users.forEach((user) => {
-        let year = user.birthDate.slice(0, 4);
-        if (user.age) {
-          user.age = dateNow - year;
-        }
-      });
+    if (checked===true) {
+      setUserEdit(userEdit)
+    //   let dateNow = new Date().getFullYear();
+    //  let res = users.forEach((user) => {
+    //     let year = user.birthDate.slice(0, 4);
+    //     if (user.age) {
+    //       user.age = dateNow - year;
+    //     }
+    //   });
 
-      console.log(res);
-    return res
+    //   return res
+    // }
+    // let res = (users.age = Math.floor(
+    //   (new Date() - new Date(users.birthDate)) / (365 * 24 * 60 * 60 * 1000)
+    // ));
+
+    return users.forEach(
+      (elem) => (elem.age = Math.floor((new Date() - new Date(elem.birthDate)) / (365 * 24 * 60 * 60 * 1000)))
+    );
 
     }
   };
@@ -120,7 +127,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
           />
 
             <label htmlFor='birthDate'>Birthday:</label>
-            <label htmlFor='birthDate'>Update user age <input type="checkbox" checked={checked} onChange={handleChangeBox} /></label>
+            <label htmlFor='birthDate'>Update user age <input type="checkbox"  name="birthDate" value={userEdit.birthDate} checked={checked} onClick={handleChangeBox} onChange={handleChange}/></label>
             <input
             className="form__input"
             type="date"

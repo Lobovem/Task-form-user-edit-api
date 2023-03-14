@@ -1,6 +1,4 @@
 import { useEffect, useState } from 'react';
-// import { deepClone } from './utils';
-// import { data } from './users-data';
 import { Form } from './components/Form/Form';
 import { Table } from './components/Table/Table';
 import { fetchUsers, saveUser } from './api';
@@ -10,7 +8,7 @@ function App() {
   const [userEdit, setUserEdit] = useState(null);
   const [userBackup, setUserBackup] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   useEffect(() => {
     fetchUsers()
