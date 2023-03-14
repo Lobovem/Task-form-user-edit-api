@@ -2,7 +2,7 @@ import './Form.scss'
 import { fetchProducts, saveProduct } from '../../api';
 
 
-export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLoading, saveProduct, fetchProducts }) {
+export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLoading, saveProduct, fetchProducts, checked, setChecked}) {
 
   const handleSubmit = () => {
     setLoading(true);
@@ -16,25 +16,34 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
     });
   };
 
-    // const usersChanged = users.map((user) => {
-    //   if (user.id === userEdit.id) {
-    //     return userEdit;
-    //   }
-    //   return user;
-    // });
-    // setUsers(usersChanged);
-    // setUserEdit(null);
+  //   const usersChanged = users.map((user) => {
+  //     if (user.id === userEdit.id) {
+  //       return userEdit;
+  //     }
+  //     return user;
+  //   });
+  //   setUsers(usersChanged);
+  //   setUserEdit(null);
 
   const handleChange = (e) => {
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value });
   };
+
+  const ubdateUserAge = () => {
+    setUserEdit(users.forEach(elem => elem.age=Math.floor((new Date() - new Date (elem.birthDate))/(365*24*60*60*1000))))
+  }
+
+  const handleChangeBox = () =>{
+		setChecked(!checked); // инвертируем стейт
+	}
 
   return (
     userEdit && (
       <form className="form" onSubmit={handleSubmit}>
         <h2 className="form__title">User editor:</h2>
 
-        <label for='firstName'>FirstName:</label>
+
+        <label htmlFor='firstName'>FirstName:</label>
         <input
           className="form__input"
           type="text"
@@ -46,7 +55,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
           onChange={handleChange}
         />
 
-          <label for='lastName'>LastName:</label>
+          <label htmlFor='lastName'>LastName:</label>
         <input
           className="form__input"
           type="text"
@@ -58,7 +67,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
           onChange={handleChange}
         />
 
-          <label for='email'>Email:</label>
+          <label htmlFor='email'>Email:</label>
         <input
           className="form__input"
           type="email"
@@ -70,7 +79,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
           onChange={handleChange}
         />
 
-          <label for='age'>Age:</label>
+          <label htmlFor='age'>Age:</label>
         <input
           className="form__input"
           type="number"
@@ -82,8 +91,8 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
           onChange={handleChange}
         />
 
-          <label for='password'>Password:</label>
-         <input
+          <label htmlFor='password'>Password:</label>
+          <input
             className="form__input"
             type="password"
             name="password"
@@ -94,20 +103,22 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
             onChange={handleChange}
           />
 
-<label for='birthday'>Birthday:</label>
-         <input
+            <label htmlFor='birthDate'>Birthday:</label>
+            <label htmlFor='birthDate'>Update user age <input type="checkbox" checked={checked} onChange={handleChangeBox} /></label>
+            <input
             className="form__input"
             type="date"
-            name="birthday"
-            id="birthday"
-            placeholder="birthday"
+            name="birthDate"
+            id="birthDate"
+            placeholder="birthDate"
             required  
             value={userEdit.birthDate}
             onChange={handleChange}
           />
 
 
-          <label for='phone'>Phone:</label>
+
+         <label htmlFor='phone'>Phone:</label>
          <input
           className="form__input"
           type="tel"
@@ -115,7 +126,7 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
           id="phone"
           placeholder="111-111-1111"
           required  
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           value={userEdit.phone}
           onChange={handleChange}
         />
@@ -126,40 +137,39 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
             className="form__input"
             type="radio"
             name="gender"
-            id=""
+            
             placeholder="Gender"
             required  
             value='male'
             onChange={handleChange}
             checked={userEdit.gender==='male'}
           />
-          <label for="contactChoice1">Male</label>
+          <label htmlFor="contactChoice1">Male</label>
   
           <input
             className="form__input"
             type="radio"
             name="gender"
-            id=""
+            
             placeholder="Gender"
             required  
             value='female'
             onChange={handleChange}
             checked={userEdit.gender==='female'}
           />
-          <label for="contactChoice1">Female</label>
+          <label htmlFor="contactChoice1">Female</label>
 
-  <input
+          <input
             className="form__input"
             type="radio"
             name="gender"
-            id=""
             placeholder="Gender"
             required  
             value='Prefer not to respond'
             onChange={handleChange}
             checked={userEdit.gender==='Prefer not to respond'}
           />
-          <label for="contactChoice1">Prefer not to respond</label>
+          <label htmlFor="contactChoice1">Prefer not to respond</label>
 </div>
 
             <select name="bloodGroup" value={userEdit.bloodGroup}
@@ -172,7 +182,27 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
             <option value='O-'>O RhD negative (O-)</option>
             <option value='AB+'>AB RhD positive (AB+)</option>
             <option value='AB-'>AB RhD negative (AB-)</option>
-</select>
+            </select>
+
+<label htmlFor="hairsColor">Choose a flavor:</label>
+<input list="hairColor" id="hairsColor" name="hair.color" value={userEdit.hair.color} onChange={handleChange}/>
+
+<datalist id="hairColor">
+    <option value="Brown"/>
+    <option value="Blonde"/>
+    <option value="Black"/>
+    <option value="Red"/>
+    <option value="Gray"/>
+    <option value="Auburn"/>
+    <option value="Chestnut"/>
+    <option value="Mahogany"/>
+    <option value="Burgundy"/>
+    <option value="Gray"/>
+    <option value="Strawberry blonde"/>
+    <option value="Platinum blonde"/>
+    <option value="Ash blonde"/>
+    <option value="Silver"/>
+</datalist>
 
         <div className="form__button-wrap">
           <button  className="form__button" type="submit">
@@ -192,3 +222,5 @@ export function Form({ users, setUsers, userEdit, setUserEdit, userBackup, setLo
     )
   );
 }
+
+
