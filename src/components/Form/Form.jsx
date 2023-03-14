@@ -34,7 +34,11 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value });
   };
 
-  const handleГpdateUserAge = () => {
+  const handleChangeAge = (hairColor) =>{
+    setUserEdit({...userEdit.hair, hairColor})
+  }
+
+  const handleUpdateUserAge = () => {
 		setUpdateUserAge(!updateUserAge); // инвертируем стейт checkbox for ubdate user age
 	}
 
@@ -105,7 +109,7 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
           />
 
             <label htmlFor='birthDate'>Birthday:</label>
-            <label htmlFor='birthDate'>Update user age <input type="checkbox" checked={updateUserAge} onChange={handleГpdateUserAge}/></label>
+            <label htmlFor='birthDate'>Update user age <input type="checkbox" checked={updateUserAge} onChange={handleUpdateUserAge}/></label>
             <input
             className="form__input"
             type="date"
@@ -186,7 +190,7 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
             </select>
 
 <label htmlFor="hairsColor">Choose a flavor:</label>
-<input list="hairColor" id="hairsColor" name="hair.color" value={userEdit.hair.color} onChange={handleChange}/>
+<input list="hairColor" id="hairsColor" name="hair.color" value={userEdit.hair.color} onChange={(e) => handleChangeAge(e.target.value)}/>
 
 <datalist id="hairColor">
     <option value="Brown"/>
