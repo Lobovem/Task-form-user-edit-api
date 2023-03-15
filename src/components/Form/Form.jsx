@@ -205,6 +205,7 @@ export function Form({
         <input
           list="hairColor"
           id="hairsColor"
+          required
           value={userEdit.hair.color}
           onChange={(e) => handleHairChange(e.target.value)}
         />
