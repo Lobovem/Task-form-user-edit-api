@@ -33,6 +33,33 @@ export function Form({  setUsers, userEdit, setUserEdit, userReset, setLoading, 
 		setUpdateUserAge(!updateUserAge); // инвертируем стейт checkbox for ubdate user age
 	}
 
+  const arrColorHair = [ 
+  "Brown",
+  "Blonde",
+  "Black",
+  "Red",
+  "Gray",
+  "Auburn",
+  "Chestnut",
+  "Mahogany",
+  "Burgundy",
+  "Gray",
+  "Strawberry blonde",
+  "Platinum blonde",
+  "Ash blonde",
+  "Silver"]
+
+  const bloodGroups = [
+             {title: 'A+', desc: "A RhD positive (A+)"},
+             {title:'A-', desc: "A RhD negative (A-)"},
+             {title:'B+', desc: "B RhD positive (B+)"},
+             {title:'B-', desc: "B RhD negative (B-)"},
+             {title:'O+', desc: "O RhD positive (O+)"},
+             {title:'O-', desc: "O RhD negative (O-)"},
+             {title:'AB+', desc: "AB RhD positive (AB+)"},
+             {title:'AB-', desc: "AB RhD negative (AB-)"}
+  ]
+
   return (
     userEdit && (
       <form className="form" onSubmit={handleSubmit}>
@@ -156,36 +183,15 @@ export function Form({  setUsers, userEdit, setUserEdit, userReset, setLoading, 
           <label htmlFor="contactChoice1">Prefer not to respond</label>
 </div>
 
-            <select name="bloodGroup" value={userEdit.bloodGroup}
-            onChange={handleChange} >
-            <option value='A+'>A RhD positive (A+)</option>
-            <option value='A-'>A RhD negative (A-)</option>
-            <option value='B+'>B RhD positive (B+)</option>
-            <option value='B-'>B RhD negative (B-)</option>
-            <option value='O+'>O RhD positive (O+)</option>
-            <option value='O-'>O RhD negative (O-)</option>
-            <option value='AB+'>AB RhD positive (AB+)</option>
-            <option value='AB-'>AB RhD negative (AB-)</option>
-            </select>
+        <select name="bloodGroup" value={userEdit.bloodGroup} onChange={handleChange} >
+                {bloodGroups.map(bloodGroup => <option value={bloodGroup.title}>{bloodGroup.desc}</option>)}
+        </select>
 
 <label htmlFor="hairsColor">Choose color hair:</label>
 <input list="hairColor" id="hairsColor" value={userEdit.hair.color} onChange={(e) => handleHairChange(e.target.value)}/>
 
 <datalist id="hairColor">
-    <option value="Brown"/>
-    <option value="Blonde"/>
-    <option value="Black"/>
-    <option value="Red"/>
-    <option value="Gray"/>
-    <option value="Auburn"/>
-    <option value="Chestnut"/>
-    <option value="Mahogany"/>
-    <option value="Burgundy"/>
-    <option value="Gray"/>
-    <option value="Strawberry blonde"/>
-    <option value="Platinum blonde"/>
-    <option value="Ash blonde"/>
-    <option value="Silver"/>
+  {arrColorHair.map(color => <option value={color}/>)}
 </datalist>
 
         <div className="form__button-wrap">
