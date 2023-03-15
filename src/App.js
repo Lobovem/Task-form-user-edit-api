@@ -6,7 +6,7 @@ import { fetchUsers, saveUser } from './api';
 function App() {
   const [users, setUsers] = useState([]);
   const [userEdit, setUserEdit] = useState(null);
-  const [userBackup, setUserBackup] = useState(null);
+  const [userReset, setUserReset] = useState(null);
   const [loading, setLoading] = useState(true);
   const [updateUserAge, setUpdateUserAge] = useState(false);
 
@@ -27,7 +27,7 @@ function App() {
         setUsers={setUsers}
         userEdit={userEdit}
         setUserEdit={setUserEdit}
-        userBackup={userBackup}
+        userReset={userReset}
         setLoading={setLoading}
         saveUser={saveUser}
         fetchUsers={fetchUsers}
@@ -36,10 +36,10 @@ function App() {
       />
       <Table
         users={users}
-        setUserEdit={setUserEdit}
         userEdit={userEdit}
-        setUserBackup={setUserBackup}
-        userBackup={userBackup}
+        setUserEdit={setUserEdit}
+        userReset={userReset}
+        setUserReset={setUserReset}
       />
     </>
   );

@@ -1,6 +1,6 @@
 import './Form.scss'
 
-export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading, saveUser, fetchUsers, updateUserAge, setUpdateUserAge}) {
+export function Form({  setUsers, userEdit, setUserEdit, userReset, setLoading, saveUser, fetchUsers, updateUserAge, setUpdateUserAge}) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,21 +21,12 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
 
   };
 
-  //   const usersChanged = users.map((user) => {
-  //     if (user.id === userEdit.id) {
-  //       return userEdit;
-  //     }
-  //     return user;
-  //   });
-  //   setUsers(usersChanged);
-  //   setUserEdit(null);
-
   const handleChange = (e) => {
     setUserEdit({ ...userEdit, [e.target.name]: e.target.value });
   };
 
-  const handleChangeAge = (hairColor) =>{
-    setUserEdit({...userEdit.hair, hairColor})
+  const handleHairChange = (color)=> {
+    setUserEdit({...userEdit, hair:{...userEdit.hair,color}})
   }
 
   const handleUpdateUserAge = () => {
@@ -47,13 +38,12 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
       <form className="form" onSubmit={handleSubmit}>
         <h2 className="form__title">User editor:</h2>
 
-
         <label htmlFor='firstName'>FirstName:</label>
         <input
           className="form__input"
           type="text"
           name="firstName"
-          id="firstname"
+          id="firstName"
           placeholder="First Name"
           required
           value={userEdit.firstName}
@@ -84,18 +74,6 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
           onChange={handleChange}
         />
 
-          <label htmlFor='age'>Age:</label>
-        <input
-          className="form__input"
-          type="number"
-          name="age"
-          id="age"
-          placeholder="Age"
-          required
-          value={userEdit.age}
-          onChange={handleChange}
-        />
-
           <label htmlFor='password'>Password:</label>
           <input
             className="form__input"
@@ -109,7 +87,10 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
           />
 
             <label htmlFor='birthDate'>Birthday:</label>
-            <label htmlFor='birthDate'>Update user age <input type="checkbox" checked={updateUserAge} onChange={handleUpdateUserAge}/></label>
+            <label htmlFor='birthDate'>Update user age 
+            <input type="checkbox" checked={updateUserAge} onChange={handleUpdateUserAge}/>
+            </label>
+
             <input
             className="form__input"
             type="date"
@@ -121,28 +102,27 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
             onChange={handleChange}
           />
 
-
-
          <label htmlFor='phone'>Phone:</label>
          <input
           className="form__input"
           type="tel"
           name="phone"
           id="phone"
-          placeholder="111-111-1111"
+          placeholder="+00 000 00 00 000"
           required  
-          // pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+          pattern = "[+, 0-9]{13,17}"
+          title="+00 000 00 00 000"
+          minLength="13"
+          maxLength="17"
           value={userEdit.phone}
           onChange={handleChange}
         />
 
 <div className='form__input-gender'>
-  
           <input
             className="form__input"
             type="radio"
             name="gender"
-            
             placeholder="Gender"
             required  
             value='male'
@@ -155,7 +135,6 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
             className="form__input"
             type="radio"
             name="gender"
-            
             placeholder="Gender"
             required  
             value='female'
@@ -189,8 +168,8 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
             <option value='AB-'>AB RhD negative (AB-)</option>
             </select>
 
-<label htmlFor="hairsColor">Choose a flavor:</label>
-<input list="hairColor" id="hairsColor" name="hair.color" value={userEdit.hair.color} onChange={(e) => handleChangeAge(e.target.value)}/>
+<label htmlFor="hairsColor">Choose color hair:</label>
+<input list="hairColor" id="hairsColor" value={userEdit.hair.color} onChange={(e) => handleHairChange(e.target.value)}/>
 
 <datalist id="hairColor">
     <option value="Brown"/>
@@ -214,7 +193,7 @@ export function Form({  setUsers, userEdit, setUserEdit, userBackup, setLoading,
             Submit
           </button>
 
-          <button onClick={() => setUserEdit(userBackup)} className="form__button" type="reset">
+          <button onClick={() => setUserEdit(userReset)} className="form__button" type="reset">
             Reset
           </button>
 

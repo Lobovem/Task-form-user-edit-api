@@ -1,6 +1,6 @@
 import './Table.scss'
 
-export function Table({ setUserEdit, users, userBackup,setUserBackup }) {
+export function Table({ setUserEdit, users, setUserReset }) {
   return (
     <>
       <table className="table">
@@ -21,7 +21,7 @@ export function Table({ setUserEdit, users, userBackup,setUserBackup }) {
                 <button
                   onClick={() => {
                     setUserEdit(user);
-                    setUserBackup(user)
+                    setUserReset(user)
                   }}
                   className="table__button"
                 >
